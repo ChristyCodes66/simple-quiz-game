@@ -9,12 +9,13 @@
 <body>
     <h1>Christy's Quiz Game!</h1>
     <button id = "start-button" onclick="startGame()">Start Game</button>
-    <h4 id="player-name"></h4>
+    <p id="player-name"></p>
     <p id="current-question"></p>
     <input type="text" id="answer-input" placeholder="Type your answer here">
     <button onclick="submitAnswer()">Submit</button>
     <p id="result"></p>
     <!-- TODO: display current score -->
+    <p id="score"></p>
     <!-- TODO: retry button for wrong answers -->
     <!-- TODO: next question button for right answers-->
 
@@ -33,7 +34,7 @@
             alert(`Hello, ${playerName}! Welcome to Christy's Quiz Game.`);
 
             askQuestion();
-            // document.getElementById("start-button").disabled = true;     // grays out buttons when clicked
+            // document.getElementById("start-button").disabled = true;
             document.getElementById("start-button").parentNode.removeChild(document.getElementById("start-button")); // alternative: button disappears when clicked
         } 
 
@@ -44,6 +45,13 @@
 
         function submitAnswer() {
             let answer = document.getElementById("answer-input").value.toString().toLowerCase();
+            answer.trim();
+            
+            if (answer == null || answer == "") {
+                alert("Please enter an answer.");
+                return;
+            }
+
             console.log(answer);
 
             checkAnswer(answer);
@@ -53,6 +61,10 @@
             let result = "";
             const correctResult = "Correct! You earned 1 point.";
             const incorrectResult = "Incorrect! Try again...";
+            
+            function displayScore(score) {
+                document.getElementById("score").innerHTML = `Score: ${score}`;
+            }
             
             switch (questionNumber) {
                 case 0: 
@@ -66,6 +78,7 @@
                             break;
                         }
                     document.getElementById("result").innerHTML = result;
+                    displayScore(score);
                     console.log(`score: ${score}`);
                     return result;
                     break;
@@ -81,12 +94,13 @@
                             break;
                         }
                     document.getElementById("result").innerHTML = result;
+                    displayScore(score);
                     console.log(`score: ${score}`);
                     return result;
                     break;
                 case 2:
                     switch (answer) {
-                        case "7", "seven":
+                        case "seven", "7":
                             result = correctResult;
                             score++;
                             break;
@@ -95,6 +109,7 @@
                             break;
                     }
                     document.getElementById("result").innerHTML = result;
+                    displayScore(score);
                     console.log(`score: ${score}`);
                     return result;
                     break;
@@ -109,6 +124,7 @@
                             break;
                     }
                     document.getElementById("result").innerHTML = result;
+                    displayScore(score);
                     console.log(`score: ${score}`);
                     return result;
                     break;
@@ -123,6 +139,7 @@
                             break;
                     }
                     document.getElementById("result").innerHTML = result;
+                    displayScore(score);
                     console.log(`score: ${score}`);
                     return result;
                     break;
