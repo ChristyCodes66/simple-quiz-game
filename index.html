@@ -7,6 +7,18 @@
 </head>
 <body>
     <h1>Christy's Quiz Game!</h1>
-    <button>Start Game</button>
+    <button onclick="startGame">Start Game</button>
+
+    <script>
+        function startGame() {
+            let playerName = prompt("Enter player name.", "Hermione Granger");
+            console.log(`Player Name: ${playerName}`);
+        
+            let questions = ["What is the capital of France?", "Which planet is known as the Red Planet?", "How many continets are there on Earth?", "What is the largest mammal in the world?", "Which of these is a primary color: Green, Yellow, Purple, or Orange?"];
+
+            let answers = ["paris", "mars", "7", "yellow"];
+        } 
+
+    </script>
 </body>
 </html>
