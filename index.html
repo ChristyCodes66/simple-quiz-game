@@ -11,37 +11,85 @@
     <h4 id="player-name"></h4>
     <p id="current-question"></p>
     <input type="text" id="answer-input" placeholder="Type your answer here">
-    <button>Submit</button>
+    <button onclick="checkAnswer()">Submit</button>
     <p id="result"></p>
 
     <script>
         let questions = ["What is the capital of France?", "Which planet is known as the Red Planet?", "How many continets are there on Earth?", "What is the largest mammal in the world?", "Which of these is a primary color: Green, Yellow, Purple, or Orange?"];
         
+        let questionNumber = Math.floor(Math.random() * (questions.length - 1));
+        
+        let score = 0;
+
         function startGame() {
             let playerName = prompt("Enter player name.", "Hermione Granger");
             document.getElementById("player-name").innerHTML = `Player: ${playerName}`;
-            
-            let score = 0;
-            
             console.log(`Player Name: ${playerName}`);
-
+            
             alert(`Hello, ${playerName}! Welcome to Christy's Quiz Game.`);
-        
-            let answers = ["paris", "mars", "7", "yellow"];
 
             askQuestion();
         } 
 
         function askQuestion() {
-            let questionNumber = Math.floor(Math.random() * (questions.length - 1));
-            // randomly select a question
             let question = questions[questionNumber];
-            // display the question
             document.getElementById("current-question").innerHTML = question;
-            
-            // ask player for answer
-            let answer = prompt("Answer:", "no answer").toString().toLowerCase();
-            console.log(answer);
+        }
+
+        function checkAnswer(answer) {
+            switch (questionNumber) {
+                case 0: 
+                    switch (answer) {
+                        case "paris":
+                            () => document.getElementById("result").innerHTML() = "Correct! You earned 1 point.";
+                            score++;
+                            console.log
+                            break;
+                        default:
+                            () => document.getElementById("result").innerHTML() = "Incorrect! The capital of France is Paris.";
+                            break;
+                    }
+                case 1:
+                    switch (answer) {
+                        case "mars":
+                            document.getElementById("result").innerHTML() = "Correct! You earned 1 point.";
+                            score++;
+                            break;
+                        default:
+                            document.getElementById("result").innerHTML() = "Incorrect! Mars is the Red Planet.";
+                            break;
+                        }
+                case 2:
+                    switch (answer) {
+                        case "7", "seven":
+                            document.getElementById("result").innerHTML() = "Correct! You earned 1 point.";
+                            score++;
+                            break;
+                        default:
+                            document.getElementById("result").innerHTML() = "Incorrect! There are 7 continents on Earth.";
+                            break;
+                    }
+                case 3:
+                    switch (answer) {
+                        case "blue whale":
+                            document.getElementById("result").innerHTML() = "Correct! You earned 1 point.";
+                            score++;
+                            break;
+                        default:
+                            document.getElementById("result").innerHTML() = "Incorrect! The largest mammal in the world is the Blue Whale.";
+                            break;
+                    }
+                case 4:
+                    switch (answer) {
+                        case "yellow":
+                            document.getElementById("result").innerHTML() = "Correct! You earned 1 point.";
+                            score++;
+                            break;
+                        default:
+                            document.getElementById("result").innerHTML() = "Incorrect! Yellow is a primary color.";
+                            break;
+                    }
+            }
         }
     </script>
 </body>
