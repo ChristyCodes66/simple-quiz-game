@@ -13,15 +13,15 @@
     <p id="current-question"></p>
     <p id="result"></p>
     <p id="score"></p>
-    <!-- TODO: next question button for right answers-->
 
     <script>
-        let questions = ["What is the capital of France?"]; //, "Which planet is known as the Red Planet?", "How many continets are there on Earth?", "What is the largest mammal in the world?", "Which of these is a primary color: Green, Yellow, Purple, or Orange?"];
+        let questions = ["What is the capital of France?", "Which planet is known as the Red Planet?", "How many continets are there on Earth?", "What is the largest mammal in the world?", "Which of these is a primary color: Green, Yellow, Purple, or Orange?"];
         
         let questionNumber = Math.floor(Math.random() * (questions.length - 1));
+        // TODO: stop questions from repeating themselves
         
         let score = 0;
-
+        
         function displayAnswerInput() {
             let answerInput = document.createElement("input");
             answerInput.id = "answer-input";
@@ -62,7 +62,7 @@
                 alert("Please enter an answer.");
                 return;
             }
-
+            
             console.log(answer);
 
             checkAnswer(answer);
@@ -70,7 +70,25 @@
 
         function displayScore(score) {
                 document.getElementById("score").innerHTML = `Score: ${score}`;
-            }
+        }
+
+        function displayNextButton() {
+            let nextButton = document.createElement("button");
+            nextButton.id = "next-button";
+            nextButton.textContent = "Next";
+            nextButton.onclick = nextQuestion;
+            document.body.appendChild(nextButton);
+        }
+
+        function nextQuestion() {
+            document.getElementById("next-button").parentNode.removeChild(document.getElementById("next-button"));
+            
+            questionNumber = Math.floor(Math.random() * (questions.length - 1));
+            askQuestion();
+            
+            document.getElementById("answer-input").value = "";
+            document.getElementById("result").innerHTML = "";
+        }
 
         function displayRetryButton() {
             let retryButton = document.createElement("button");
@@ -97,6 +115,7 @@
                     switch (answer) {
                         case "paris":
                             result = correctResult;
+                            displayNextButton();
                             score++;
                             break;
                         default:
@@ -114,6 +133,7 @@
                     switch (answer) {
                         case "mars":
                             result = correctResult;
+                            displayNextButton();
                             score++;
                             break;
                         default:
@@ -130,6 +150,7 @@
                     switch (answer) {
                         case "seven", "7":
                             result = correctResult;
+                            displayNextButton();
                             score++;
                             break;
                         default:
@@ -146,6 +167,7 @@
                     switch (answer) {
                         case "blue whale":
                             result = correctResult;
+                            displayNextButton();
                             score++;
                             break;
                         default:
@@ -162,6 +184,7 @@
                     switch (answer) {
                         case "yellow":
                             result = correctResult;
+                            displayNextButton();
                             score++;
                             break;
                         default:
