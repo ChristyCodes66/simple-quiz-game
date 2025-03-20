@@ -17,10 +17,11 @@
     <script>
         let questions = ["What is the capital of France?", "Which planet is known as the Red Planet?", "How many continets are there on Earth?", "What is the largest mammal in the world?", "Which of these is a primary color: Green, Yellow, Purple, or Orange?"];
         
-        // TODO: stop questions from repeating themselves
-        let pastQuestions = [];
+        let pastQuestions = [ ];
         
         let questionNumber = Math.floor(Math.random() * questions.length);
+
+        let playerName;
         
         let score = 0;
         
@@ -39,7 +40,7 @@
         }
 
         function startGame() {
-            let playerName = prompt("Enter player name:", "Hermione Granger");
+            playerName = prompt("Enter player name:", "Hermione Granger");
             document.getElementById("player-name").innerHTML = `Player: ${playerName}`;
             console.log(`Player Name: ${playerName}`);
             
@@ -74,10 +75,11 @@
             console.log(answer);
 
             checkAnswer(answer);
+            gameOver();
         }
 
         function displayScore(score) {
-                document.getElementById("score").innerHTML = `Score: ${score}`;
+                document.getElementById("score").innerHTML = `Score: ${score}/5`;
         }
 
         function displayNextButton() {
@@ -205,6 +207,13 @@
                     console.log(`score: ${score}`);
                     return result;
                     break;
+            }
+        }
+
+        function gameOver() {
+            if (score == 5) {
+                alert(`Congratulations! You won! Score: ${score}/5`);
+                window.location.reload();
             }
         }
     </script>
