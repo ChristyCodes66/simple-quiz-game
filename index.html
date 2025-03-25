@@ -45,28 +45,28 @@
             console.log(`Player Name: ${playerName}`);
             
             alert(`Hello, ${playerName}! Welcome to Christy's Quiz Game.`);
-            displayAnswerInput();
+            
+            document.getElementById("start-button").remove();
+            
             askQuestion();
-
-            // document.getElementById("start-button").disabled = true;
-            document.getElementById("start-button").parentNode.removeChild(document.getElementById("start-button")); // alternative: button disappears when clicked
         } 
-
+        
         function askQuestion() {
             if (pastQuestions.length === questions.length) {
                 alert(`Game Over! Your final score: ${score}/5`);
                 window.location.reload();
                 return;
             }
-
+            
             do {
                 questionNumber = Math.floor(Math.random() * questions.length);
             } while (pastQuestions.includes(questionNumber));
-
+            
             let question = questions[questionNumber];
             document.getElementById("current-question").innerHTML = question;
-
+            
             pastQuestions.push(questionNumber);
+            displayAnswerInput();
         }
 
         function submitAnswer() {
