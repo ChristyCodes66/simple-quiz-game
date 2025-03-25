@@ -85,6 +85,8 @@
             
             console.log(answer);
 
+            document.getElementById("submit-button").disabled = true;
+
             checkAnswer(answer);
         }
 
@@ -108,6 +110,8 @@
             document.getElementById("next-button").parentNode.removeChild(document.getElementById("next-button"));
             document.getElementById("answer-input").value = "";
             document.getElementById("result").innerHTML = "";
+
+            document.getElementById("submit-button").disabled = false;
         }
 
         function displayRetryButton() {
