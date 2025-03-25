@@ -53,9 +53,15 @@
         } 
 
         function askQuestion() {
-            while (pastQuestions.includes(questionNumber)) {
-                questionNumber = Math.floor(Math.random() * questions.length);
+            if (pastQuestions.length === questions.length) {
+                alert(`Game Over! Your final score: ${score}/5`);
+                window.location.reload();
+                return;
             }
+
+            do {
+                questionNumber = Math.floor(Math.random() * questions.length);
+            } while (pastQuestions.includes(questionNumber));
 
             let question = questions[questionNumber];
             document.getElementById("current-question").innerHTML = question;
@@ -207,13 +213,6 @@
                     console.log(`score: ${score}`);
                     return result;
                     break;
-            }
-        }
-
-        function gameOver() {
-            if (score == 5) {
-                alert(`Congratulations! You won! Score: ${score}/5`);
-                window.location.reload();
             }
         }
     </script>
