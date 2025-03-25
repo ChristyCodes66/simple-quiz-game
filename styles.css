@@ -49,3 +49,10 @@ input[type="text"] {
     border-radius: 5px;
     font-size: 16px;
 }
+
+/* Score & results */
+#score, #results {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 15px;
+}
